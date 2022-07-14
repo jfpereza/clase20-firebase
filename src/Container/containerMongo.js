@@ -1,10 +1,14 @@
-import mongoose from "mongoose";
-// -----------------connection-------------------//
-mongoose.connect('mongodb://localhost:27017/CODERHOUSE')
+import mongoose from 'mongoose'
 
-const Cat = mongoose.model('products', { name: String });
+const userCollection = 'users'
 
-const kitty = new Cat({ name: 'rambo2' });
-kitty.save().then(() => console.log('guardado'));
+const UserSchema = new mongoose.Schema({
+    name: { type: String, require: true, max: 100 },
+    lastname: { type: String, require: true, max: 100 },
+    email: { type: String, require: true, max: 100 },
+    username: { type: String, max: 100 },
+    password: { type: Number, require: true }
+})
 
+export const User = mongoose.model(userCollection, UserSchema)
 
